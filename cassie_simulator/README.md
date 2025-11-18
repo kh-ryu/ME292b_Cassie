@@ -3,6 +3,8 @@ Cassie Simulator using Recursive Newton Euler algorithms from Roy Featherstone.
 
 run "cassie\startup.m" and then "cassie\run_cassie.m"
 
+You might have to change '\' to '/' in "cassie\startup.m" depending on your OS.
+
 ## Cassie coordinate system
 
 #### Base DOFs
