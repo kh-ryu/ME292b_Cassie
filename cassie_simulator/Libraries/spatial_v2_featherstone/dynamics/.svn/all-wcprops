@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics
+END
+IDfb.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/IDfb.m
+END
+get_gravity.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/get_gravity.m
+END
+EnerMo.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/EnerMo.m
+END
+apply_external_forces.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/apply_external_forces.m
+END
+fbkin.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/fbkin.m
+END
+HD.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/HD.m
+END
+FDab.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/FDab.m
+END
+ID.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/ID.m
+END
+fbanim.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/fbanim.m
+END
+HandC.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/trooper_research/!svn/ver/44/trunk/Libraries/spatial_v2_featherstone/dynamics/HandC.m
+END
+FDcrb.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/FDcrb.m
+END
+FDfb.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/FDfb.m
+END
+FDgq.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone/dynamics/FDgq.m
+END

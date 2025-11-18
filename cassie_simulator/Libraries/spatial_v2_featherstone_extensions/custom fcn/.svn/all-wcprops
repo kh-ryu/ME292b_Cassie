@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn
+END
+mcI_inv.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/repos/trooper_research/!svn/ver/9/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/mcI_inv.m
+END
+gen_kappa_mu.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/repos/trooper_research/!svn/ver/9/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/gen_kappa_mu.m
+END
+compute_Jacobian_joint_pos.m
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/compute_Jacobian_joint_pos.m
+END
+rot_axis.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/rot_axis.m
+END
+X_to_r.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/X_to_r.m
+END
+compute_COM_pos.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/repos/trooper_research/!svn/ver/64/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/compute_COM_pos.m
+END
+COMJac.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/COMJac.m
+END
+mcI_fcn.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/trooper_research/!svn/ver/64/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/mcI_fcn.m
+END
+floatbase_cust.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/repos/trooper_research/!svn/ver/46/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/floatbase_cust.m
+END
+bodydJdq.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/repos/trooper_research/!svn/ver/47/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/bodydJdq.m
+END
+compute_joint_pos.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/compute_joint_pos.m
+END
+COMJac_vel.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/COMJac_vel.m
+END
+X_to_rpy.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/X_to_rpy.m
+END
+combine_DOF_test.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/repos/trooper_research/!svn/ver/40/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/combine_DOF_test.m
+END
+combine_DOF.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/repos/trooper_research/!svn/ver/40/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/combine_DOF.m
+END
+crm3.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/crm3.m
+END
+showmotion.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/showmotion.m
+END
+total_mass.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/total_mass.m
+END
+floatbase_XYZ.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/repos/trooper_research/!svn/ver/9/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/floatbase_XYZ.m
+END
+bodyJac.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/trooper_research/!svn/ver/45/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/bodyJac.m
+END
+jcalc.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/repos/trooper_research/!svn/ver/9/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/jcalc.m
+END
+RotToRPY_ZXY.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/repos/trooper_research/!svn/ver/45/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/RotToRPY_ZXY.m
+END
+bodypos.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/bodypos.m
+END
+bodyJac_vel.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/repos/trooper_research/!svn/ver/1/trunk/Libraries/spatial_v2_featherstone_extensions/custom%20fcn/bodyJac_vel.m
+END
