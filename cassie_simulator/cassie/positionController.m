@@ -25,8 +25,8 @@ tau = -kp*(q(model.actuated_idx)-q0(model.actuated_idx)) - kd*dq(model.actuated_
 e_roll  = q(6)  - q0(6);
 ed_roll = dq(6) - 0;
 
-Kp_roll = 300;     % tune
-Kd_roll = 40;
+Kp_roll = 3000;     % tune
+Kd_roll = 300;
 
 T_roll = Kp_roll*e_roll + Kd_roll*ed_roll;
 
@@ -48,8 +48,8 @@ tau(idxR_knee) = tau(idxR_knee) + T_roll;
 e_x  = q(1)  - q0(1);
 ed_x = dq(1) - 0;
 
-Kp_pitch = 300;    % tune
-Kd_pitch = 40;
+Kp_pitch = 3000;    % tune
+Kd_pitch = 300;
 
 T_t = Kp_pitch*e_x + Kd_pitch*ed_x;
 
@@ -64,8 +64,8 @@ tau(idxR_toe) = tau(idxR_toe) - T_t;
 e_z  = q(3)  - q0(3);    % torso height
 ed_z = dq(3) - 0;
 
-Kp_z = 2000;
-Kd_z = 200;
+Kp_z = 30000;
+Kd_z = 3000;
 
 T_z = Kp_z*e_z + Kd_z*ed_z;
 
