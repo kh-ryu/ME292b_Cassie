@@ -50,30 +50,32 @@ end
 
 %% Plots and animation
 
-disp('Graphing...') ;
-% Plot COM position, base orientation, joint angles
-figure() ; 
-    subplot(3,1,1);plot(t_vec, r_com) ;grid ; title('com positions x-y-z') ;hold; legend('x','y','z') ;
-    subplot(3,1,2); plot(t_vec, x_vec(:,4:6)) ; grid ; title('base angles') ; 
-    subplot(3,1,3); plot(t_vec, x_vec(:,7:model.n)) ; grid ; title('joint angles') ; 
-    
-% Plot Base (Pelvis) Position
-figure ; plot(t_vec, x_vec(:,1:3)) ; grid on ;
-    title('Base (Pelvis) Translation') ; legend('x','y','z') ;
-    
-% Plot Base (Pelvis) Orientation
-figure ; plot(t_vec, x_vec(:,4:6)*180/pi) ; grid on ;
-    title('Base (Pelvis) Orientation') ; legend('r','p','y') ;
-    
-% Plot Torques
-figure ; 
-    subplot(2,1,1) ;
-        plot(t_vec, tau_vec(:, [model.jidx.hip_abduction_left; model.jidx.hip_rotation_left; model.jidx.hip_flexion_left; model.jidx.knee_joint_left; model.jidx.toe_joint_left])) ;
-        grid on ; title('Left Torques') ; legend('abduction','rotation','flexion','knee','toe') ;
-    subplot(2,1,2) ;
-        plot(t_vec, tau_vec(:, [model.jidx.hip_abduction_right; model.jidx.hip_rotation_right; model.jidx.hip_flexion_right; model.jidx.knee_joint_right; model.jidx.toe_joint_right])) ;
-        grid on ; title('Right Torques') ; legend('abduction','rotation','flexion','knee','toe') ;
+if true
+    disp('Graphing...') ;
+    % Plot COM position, base orientation, joint angles
+    figure() ; 
+        subplot(3,1,1);plot(t_vec, r_com) ;grid ; title('com positions x-y-z') ;hold; legend('x','y','z') ;
+        subplot(3,1,2); plot(t_vec, x_vec(:,4:6)) ; grid ; title('base angles') ; 
+        subplot(3,1,3); plot(t_vec, x_vec(:,7:model.n)) ; grid ; title('joint angles') ; 
         
-%% Animation
-stateData = getVisualizerState(x_vec, model);
-vis = CassieVisualizer(t_vec, stateData);
+    % Plot Base (Pelvis) Position
+    figure ; plot(t_vec, x_vec(:,1:3)) ; grid on ;
+        title('Base (Pelvis) Translation') ; legend('x','y','z') ;
+        
+    % Plot Base (Pelvis) Orientation
+    figure ; plot(t_vec, x_vec(:,4:6)*180/pi) ; grid on ;
+        title('Base (Pelvis) Orientation') ; legend('r','p','y') ;
+        
+    % Plot Torques
+    figure ; 
+        subplot(2,1,1) ;
+            plot(t_vec, tau_vec(:, [model.jidx.hip_abduction_left; model.jidx.hip_rotation_left; model.jidx.hip_flexion_left; model.jidx.knee_joint_left; model.jidx.toe_joint_left])) ;
+            grid on ; title('Left Torques') ; legend('abduction','rotation','flexion','knee','toe') ;
+        subplot(2,1,2) ;
+            plot(t_vec, tau_vec(:, [model.jidx.hip_abduction_right; model.jidx.hip_rotation_right; model.jidx.hip_flexion_right; model.jidx.knee_joint_right; model.jidx.toe_joint_right])) ;
+            grid on ; title('Right Torques') ; legend('abduction','rotation','flexion','knee','toe') ;
+            
+    %% Animation
+    stateData = getVisualizerState(x_vec, model);
+    vis = CassieVisualizer(t_vec, stateData);
+end

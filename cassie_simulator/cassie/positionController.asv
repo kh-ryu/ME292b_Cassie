@@ -18,8 +18,8 @@ kp = 500 ;
 kd = 100 ;
 x0 = getInitialState(model);
 q0 = x0(1:model.n) ;
-dq0 = zeros(size(dq), like=dq);
-tau = -kp*(q(model.actuated_idx)-q0(model.actuated_idx)) - kd*(dq(model.actuated_idx) - dq0(model.actuated_idx));
+dq0 = 
+tau = -kp*(q(model.actuated_idx)-q0(model.actuated_idx)) - kd*dq(model.actuated_idx) ;
 
 %% [Control #3] Position control based balancing
 % roll control
@@ -77,24 +77,24 @@ idxR_knee = 8;
 tau(idxL_knee) = tau(idxL_knee) - T_z;
 tau(idxR_knee) = tau(idxR_knee) - T_z;
 
-% %% [Control #4] Momentum-based balancing controller
-% 
-% c0 = computeComPosVel(q0, dq, model);
-% f0 = computeFootPositions(q0, model);
-% 
-% % 1. Get CoM position (c) and velocity (v_com)
-% [c, v_com] = computeComPosVel(q, dq, model); 
-% 
-% % Get Foot positions (r_i) for all 4 contact points
-% r_feet = computeFootPositions(q, model);
-% 
-% % 2. Desired Wrench Calc
-% Kp_com = 500; Kd_com = 50; % TO TUNE
-% F_des = Kp_com*(c - c0) + Kd_com*(v_com - 0);
-% F_des = F_des + f0;
-% 
-% Kp_ang = 300; Kd_ang = 30; % TO TUNE
-% tau_des = Kp_ang*(q(4:6) - 0) + Kd_ang*(dq(4:6) - 0); % Stabilize orientation
+%% [Control #4] Momentum-based balancing controller
+
+c0 = computeComPosVel(q0, dq, model);
+f0 = computeFootPositions(q0, model);
+
+% 1. Get CoM position (c) and velocity (v_com)
+[c, v_com] = computeComPosVel(q, dq, model); 
+
+% 2. Get Foot positions (r_i) for all 4 contact points
+r_feet = computeFootPositions(q, model);
+
+% 2. Desired Wrench (PD Control)
+Kp_com = 500; Kd_com = 50;
+F_des = Kp_com*(c - c0) + Kd_com*(v_com - 0);
+F_des = F_des + f0;
+
+Kp_ang = 300; 
+tau_des = Kp_ang*(q(4:6) - 0) + Kp_ang *(dq(4:6) - 0); % Stabilize orientation
 % 
 % Wrench_des = [F_des; tau_des];
 % 
@@ -102,7 +102,7 @@ tau(idxR_knee) = tau(idxR_knee) - T_z;
 % A = zeros(6, 12);
 % for i = 1:4
 %     % Extract position of foot i (r_i) from foot_pos
-%     r_i = r_feet((i-1)*3+1 : i*3);
+%     r_i = foot_pos((i-1)*3+1 : i*3);
 % 
 %     % Linear force part
 %     A(1:3, (i-1)*3+1 : i*3) = eye(3);
@@ -116,7 +116,8 @@ tau(idxR_knee) = tau(idxR_knee) - T_z;
 % end
 % 
 % % 4. Solve for Contact Forces
-% f_contact = pinv(A) * Wrench_des; % (Using pseudo-inverse for simplicity)
+% % (Using pseudo-inverse for simplicity)
+% f_contact = pinv(A) * Wrench_des;
 % 
 % % 5. Map to Joint Torques
 % J_feet = computeFootJacobians(q); % Get Jacobians 
@@ -125,11 +126,14 @@ tau(idxR_knee) = tau(idxR_knee) - T_z;
 % u_contact = J_feet' * f_contact;
 % 
 % % 6. Gravity Compensation
-% % [~, CandG] = HandC(q, dq); % 
+% [~, CandG] = HandC(q, dq); % 
 % 
 % % Final Control Law
 % % Only taking the relevant indices for the 10 actuated motors if J returns 20x3
 % u_full = u_contact + CandG; 
 % 
 % % Note: You must map u_full (20x1) to the specific 10 motors defined in Equation (2) [cite: 39]
-% tau = u_full(model.actuated_idx);
+% % The helper functions usually return full dimension vectors.
+% % Extract the actuated indices (motors) to return 'u'
+% indices = [7,8,9,10,11,12,13,14,15,16]; % Verify indices based on Eq (2)
+% u = u_full(indices);
