@@ -1,0 +1,139 @@
+function tau = momentumBasedBalancing(t, s, model, params)
+% Modify this code to calculate the joint torques
+% t - time
+% s - state of the robot
+% model - struct containing robot properties
+% params - user defined parameters in studentParams.m
+% tau - 10x1 vector of joint torques
+
+% State vector components ID
+q = s(1 : model.n);
+dq = s(model.n+1 : 2*model.n);
+
+%% [Control #1] zero control
+% tau = zeros(10,1);
+
+%% [Control #2] High Gain Joint PD control on all actuated joints
+% kp = 500 ;
+% kd = 100 ;
+x0 = getInitialState(model);
+q0 = x0(1:model.n) ;
+% dq0 = zeros(size(dq), like=dq);
+% tau = -kp*(q(model.actuated_idx)-q0(model.actuated_idx)) - kd*(dq(model.actuated_idx) - dq0(model.actuated_idx));
+
+%% [Control #3] Position control based balancing
+% roll control
+% e_roll  = q(6)  - q0(6);
+% ed_roll = dq(6) - 0;
+
+% Kp_roll = 5000;     % tune
+% Kd_roll = 500;
+
+% T_roll = Kp_roll*e_roll + Kd_roll*ed_roll;
+
+% % If roll is positive (tilt left), push left hip up, right hip down:
+% idxL_hipAbd = 1;
+% idxR_hipAbd = 2;
+
+% tau(idxL_hipAbd) = tau(idxL_hipAbd) - T_roll;
+% tau(idxR_hipAbd) = tau(idxR_hipAbd) + T_roll;
+
+% % If roll is positive (tilt left), push left knee up, right knee down:
+% idxL_knee = 7;
+% idxR_knee = 8;
+
+% tau(idxL_knee) = tau(idxL_knee) - T_roll;
+% tau(idxR_knee) = tau(idxR_knee) + T_roll;
+
+% % x control
+% e_x  = q(1)  - q0(1);
+% ed_x = dq(1) - 0;
+
+% Kp_pitch = 3000;    % tune
+% Kd_pitch = 300;
+
+% T_t = Kp_pitch*e_x + Kd_pitch*ed_x;
+
+% idxL_toe = 9;
+% idxR_toe = 10;
+
+% % If e_x is positive (leaning forward), increased toe joint:
+% tau(idxL_toe) = tau(idxL_toe) - T_t;
+% tau(idxR_toe) = tau(idxR_toe) - T_t;
+
+% % Height control
+% e_z  = q(3)  - q0(3);    % torso height
+% ed_z = dq(3) - 0;
+
+% Kp_z = 30000;
+% Kd_z = 3000;
+
+% T_z = Kp_z*e_z + Kd_z*ed_z;
+
+% idxL_knee = 7;
+% idxR_knee = 8;
+
+% % Get shorter if z is high, longer if z is low:
+% tau(idxL_knee) = tau(idxL_knee) - T_z;
+% tau(idxR_knee) = tau(idxR_knee) - T_z;
+
+%% [Control #4] Momentum-based balancing controller
+
+c0 = computeComPosVel(q0, dq, model);
+f0 = computeFootPositions(q0, model);
+
+% 1. Get CoM position (c) and velocity (v_com)
+[c, v_com] = computeComPosVel(q, dq, model); 
+
+% Get Foot positions (r_i) for all 4 contact points
+r_feet = computeFootPositions(q, model);
+
+% 2. Desired Wrench Calc
+Kp_com = params.momentumBasedBalancing.Kp_com; 
+Kd_com = params.momentumBasedBalancing.Kd_com;
+
+F_des = Kp_com*(c - c0) + Kd_com*(v_com - 0);
+F_des = F_des + f0;
+
+Kp_ang = params.momentumBasedBalancing.Kp_ang; 
+Kd_ang = params.momentumBasedBalancing.Kd_ang;
+
+tau_des = Kp_ang*(q(4:6) - 0) + Kd_ang*(dq(4:6) - 0); % Stabilize orientation
+
+Wrench_des = [F_des; tau_des];
+
+% 3. Formulate A Matrix (6x12)
+A = zeros(6, 12);
+for i = 1:4
+    % Extract position of foot i (r_i) from foot_pos
+    r_i = r_feet((i-1)*3+1 : i*3);
+
+    % Linear force part
+    A(1:3, (i-1)*3+1 : i*3) = eye(3);
+
+    % Moment part (cross product matrix of r_i - c)
+    r_rel = r_i - c;
+    r_skew = [0, -r_rel(3), r_rel(2);
+              r_rel(3), 0, -r_rel(1);
+              -r_rel(2), r_rel(1), 0];
+    A(4:6, (i-1)*3+1 : i*3) = r_skew;
+end
+
+% 4. Solve for Contact Forces
+f_contact = pinv(A) * Wrench_des; % (Using pseudo-inverse for simplicity)
+
+% 5. Map to Joint Torques
+J_feet = computeFootJacobians(q); % Get Jacobians 
+
+% Torque from contact forces: u = J^T * F
+u_contact = J_feet' * f_contact;
+
+% 6. Gravity Compensation
+% [~, CandG] = HandC(q, dq); % 
+
+% Final Control Law
+% Only taking the relevant indices for the 10 actuated motors if J returns 20x3
+u_full = u_contact + CandG; 
+
+% Note: You must map u_full (20x1) to the specific 10 motors defined in Equation (2) [cite: 39]
+tau = u_full(model.actuated_idx);

@@ -1,4 +1,4 @@
-function tau = studentController(t, s, model, params)
+function tau = contactForceBalancing(t, s, model, params)
 % Modify this code to calculate the joint torques
 % t - time
 % s - state of the robot
@@ -17,12 +17,12 @@ m = model.M;
 g = -9.81; % Maybe it should be positive?
 
 % Position Gains (CoM Regulation)
-Kp_pos = diag([500, 500, 1000]);
-Kd_pos = diag([100, 100, 400]);
+Kp_pos = params.contactForceBalancing.Kp_pos;
+Kd_pos = params.contactForceBalancing.Kd_pos;
 
 % Orientation Gains (Trunk Regulation)
-Kp_ori = diag([200, 200, 200]); 
-Kd_ori = diag([50, 50, 50]);
+Kp_ori = params.contactForceBalancing.Kp_ori;
+Kd_ori = params.contactForceBalancing.Kd_ori;
 
 % Friction coefficient
 mu = 0.8;
@@ -95,9 +95,9 @@ G_trans = G_C(1:3, :);
 G_rot   = G_C(4:6, :);
 
 % 2. Define Weights (alpha3 << alpha2 << alpha1)
-alpha1 = 100.0; % Priority: Linear Force (Main balance)
-alpha2 = 1.0;   % Priority: Angular Torque (Orientation)
-alpha3 = 0.01;  % Priority: Minimize Forces (Regularization)
+alpha1 = params.contactForceBalancing.alpha1; % Priority: Linear Force (Main balance)
+alpha2 = params.contactForceBalancing.alpha2;   % Priority: Angular Torque (Orientation)
+alpha3 = params.contactForceBalancing.alpha3;  % Priority: Minimize Forces (Regularization)
 
 % 3. Construct QP Matrices
 % Cost J = 0.5 * f' * H * f + f_cost' * f

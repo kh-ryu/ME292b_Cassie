@@ -8,3 +8,5 @@ function tau = studentController(t, s, model, params)
 
 % State vector components ID
 tau = positionController(t, s, model, params);
+% tau = contactForceBalancing(t, s, model, params);
+% tau = momentumBasedBalancing(t, s, model, params);
