@@ -1,5 +1,6 @@
 function run_cassie()
 close all ;
+clc;
 
 % add paths
 startup;
